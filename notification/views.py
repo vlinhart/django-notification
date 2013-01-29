@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-from notification.models import NoticeSetting, NoticeType, NOTICE_MEDIA
+from notification.models import NoticeSetting, NoticeType, Notice, NOTICE_MEDIA
 
 
 @login_required
@@ -60,3 +60,41 @@ def notice_settings(request):
         "notice_types": notice_types,
         "notice_settings": notice_settings,
     }, context_instance=RequestContext(request))
+
+
+def respond(request, code):
+    """
+    Responds to the request with the given response code.
+    If ``next`` is in the form, it will redirect instead.
+    """
+    if 'next' in request.REQUEST:
+        return HttpResponseRedirect(request.REQUEST['next'])
+    return type('Response%d' % code, (HttpResponse, ), {'status_code': code})()
+
+
+@login_required
+def mark_seen(request, notice_id):
+    """
+    Mark all unseen notices for the requesting user as seen. Returns a
+    ``HttpResponseRedirect`` when complete.
+    """
+    try:
+        notice = Notice.objects.get(pk=notice_id)
+        if notice.unseen:
+            notice.unseen = False
+            notice.save()
+    except Notice.DoesNotExist:
+        respond(request, 404)
+    return respond(request, 204)
+
+
+@login_required
+def mark_all_seen(request):
+    """
+    Mark all unseen notices for the requesting user as seen. Returns a
+    ``HttpResponseRedirect`` when complete.
+    """
+    for notice in Notice.objects.notices_for(request.user, unseen=True):
+        notice.unseen = False
+        notice.save()
+    return respond(request, 204)
