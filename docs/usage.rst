@@ -12,7 +12,7 @@ Integrating notification support into your app is a simple three-step process.
 Creating Notice Types
 ---------------------
 
-You need to call ``create_notice_type(label, display, description)`` once to
+You need to call ``NoticeType.create(label, display, description)`` once to
 create the notice types for your application in the database. ``label`` is just
 the internal shortname that will be used for the type, ``display`` is what the
 user will see as the name of the notification type and `description` is a
@@ -20,7 +20,7 @@ short description.
 
 For example::
 
-    notification.create_notice_type("friends_invite", "Invitation Received", "you have received an invitation")
+    NoticeType.create("friends_invite", "Invitation Received", "you have received an invitation")
 
 One good way to automatically do this notice type creation is in a
 ``management.py`` file for your app, attached to the syncdb signal.
@@ -34,8 +34,8 @@ Here is an example::
         from notification import models as notification
         
         def create_notice_types(app, created_models, verbosity, **kwargs):
-            notification.create_notice_type("friends_invite", _("Invitation Received"), _("you have received an invitation"))
-            notification.create_notice_type("friends_accept", _("Acceptance Received"), _("an invitation you sent has been accepted"))
+            notification.NoticeType.create("friends_invite", _("Invitation Received"), _("you have received an invitation"))
+            notification.NoticeType.create("friends_accept", _("Acceptance Received"), _("an invitation you sent has been accepted"))
             
         signals.post_syncdb.connect(create_notice_types, sender=notification)
     else:
