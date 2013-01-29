@@ -1,9 +1,9 @@
-from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
-from django.template import RequestContext
-
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.utils.translation import ugettext as _
 from notification.models import NoticeSetting, NoticeType, NOTICE_MEDIA
 
 
@@ -11,14 +11,14 @@ from notification.models import NoticeSetting, NoticeType, NOTICE_MEDIA
 def notice_settings(request):
     """
     The notice settings view.
-    
+
     Template: :template:`notification/notice_settings.html`
-    
+
     Context:
-        
+
         notice_types
             A list of all :model:`notification.NoticeType` objects.
-        
+
         notice_settings
             A dictionary containing ``column_headers`` for each ``NOTICE_MEDIA``
             and ``rows`` containing a list of dictionaries: ``notice_type``, a
@@ -45,16 +45,17 @@ def notice_settings(request):
                         setting.save()
             settings_row.append((form_label, setting.send))
         settings_table.append({"notice_type": notice_type, "cells": settings_row})
-    
+
     if request.method == "POST":
         next_page = request.POST.get("next_page", ".")
+        messages.add_message(request, messages.SUCCESS, _('Notification Settings Updated'))
         return HttpResponseRedirect(next_page)
-    
+
     notice_settings = {
         "column_headers": [medium_display for medium_id, medium_display in NOTICE_MEDIA],
         "rows": settings_table,
     }
-    
+
     return render_to_response("notification/notice_settings.html", {
         "notice_types": notice_types,
         "notice_settings": notice_settings,
