@@ -1,5 +1,3 @@
-__version__ = "1.0"
-
 from django.conf import settings
 
 
