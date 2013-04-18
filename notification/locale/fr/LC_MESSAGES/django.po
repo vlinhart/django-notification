@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: django-notification\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-18 11:44+0200\n"
+"PO-Revision-Date: 2013-04-18 11:56+0100\n"
+"Last-Translator: Scopart <contact@scopart.fr>\n"
+"Language-Team: Scopart <contact@scopart.fr>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+
+#: models.py:22
+msgid "label"
+msgstr "libellé"
+
+#: models.py:23
+msgid "display"
+msgstr "affichage"
+
+#: models.py:24
+msgid "description"
+msgstr "description"
+
+#: models.py:25
+msgid "on site"
+msgstr "Sur site"
+
+#: models.py:28
+msgid "default"
+msgstr "defaut"
+
+#: models.py:34
+#: models.py:118
+#: models.py:170
+msgid "notice type"
+msgstr "Type de notification"
+
+#: models.py:35
+msgid "notice types"
+msgstr "Types de notifications"
+
+#: models.py:115
+msgid "recipient"
+msgstr "destinataire"
+
+#: models.py:116
+msgid "sender"
+msgstr "expéditeur"
+
+#: models.py:117
+msgid "message"
+msgstr "message"
+
+#: models.py:119
+msgid "added"
+msgstr "ajoutée"
+
+#: models.py:120
+msgid "unseen"
+msgstr "Non lue"
+
+#: models.py:121
+msgid "archived"
+msgstr "archivée"
+
+#: models.py:146
+msgid "notice"
+msgstr "notification"
+
+#: models.py:147
+msgid "notices"
+msgstr "notifications"
+
+#: models.py:169
+msgid "user"
+msgstr "utilisateur"
+
+#: models.py:171
+msgid "medium"
+msgstr "milieu"
+
+#: models.py:172
+msgid "send"
+msgstr "envoyer"
+
+#: models.py:175
+msgid "notice setting"
+msgstr "configuration des notifications"
+
+#: models.py:176
+msgid "notice settings"
+msgstr "configurations des notifications"
+
+#: views.py:51
+msgid "Notification Settings Updated"
+msgstr "La configuration des notifications a bien été enregistrée"
+
+#: templates/notification/email_body.txt:1
+#, python-format
+msgid ""
+"You have received the following notice from %(current_site)s:\n"
+"\n"
+"%(message)s\n"
+"\n"
+"To see other notices or change how you receive notifications, please go to %(default_http_protocol)s://%(current_site)s%(notices_url)s\n"
+msgstr ""
+"Vous avez reçu la notification suivante du site %(current_site)s\n"
+"\n"
+"%(message)s\n"
+"\n"
+"Pour voir les autres notifications ou changer la façon dont vous recevez ses notifications, veuillez vous rendre sur %(default_http_protocol)s://%(current_site)s%(notices_url)s\n"
+
+#: templates/notification/email_subject.txt:1
+#, python-format
+msgid "[%(current_site)s] %(message)s"
+msgstr "[%(current_site)s] %(message)s"
+
+#: templates/notification/full.html:1
+#: templates/notification/full.txt:1
+#: templates/notification/notice.html:1
+#: templates/notification/short.txt:1
+#, python-format
+msgid "%(notice)s"
+msgstr "%(notice)s"
+
+#: templates/notification/notice_settings.html:8
+#: templates/notification/notice_settings.html:11
+msgid "Notification Settings"
+msgstr "Configuration des notifications"
+
+#: templates/notification/notice_settings.html:15
+#, python-format
+msgid ""
+"\n"
+"        <p class=\"alert alert-warning\">\n"
+"            <span class=\"warning\">Note</span>:\n"
+"            You do not have a verified email address to which notices can be sent. <a href=\"%(email_url)s\">Add one</a> now.\n"
+"        </p>\n"
+"        "
+msgstr ""
+"\n"
+"        <p class=\"alert alert-warning\">\n"
+"            <span class=\"warning\">Note</span>:\n"
+"            Vous n'avez pas renseigné votre adresse mail où recevoir les notifications. <a href=\"%(email_url)s\">Ajoutez en une</a> maintenant.\n"
+"        </p>\n"
+"        "
+
+#: templates/notification/notice_settings.html:27
+msgid "Notification Type"
+msgstr "Type de notification"
+
+#: templates/notification/notice_settings.html:52
+msgid "Change"
+msgstr "Modifier"
+
